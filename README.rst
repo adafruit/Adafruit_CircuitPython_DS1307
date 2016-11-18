@@ -69,8 +69,9 @@ Usage Notes
 
 Of course, you must import the library to use it:
 
-``import machine
-  import adafruit_ds1307``
+::
+   import machine
+   import adafruit_ds1307
 
 All the Adafruit RTC libraries take an instantiated and active I2C object
 (from the machine library) as an argument to their constructor. The way to
@@ -78,27 +79,32 @@ create an I2C object depends on the board you are using. If you are using the
 ATSAMD21-based board, like the Feather M0, you **must** initialize the object
 after you create it:
 
-``myI2C = machine.I2C(machine.Pin('SCL'), machine.Pin('SDA'))
-  myI2C.init()``
+::
+   myI2C = machine.I2C(machine.Pin('SCL'), machine.Pin('SDA'))
+   myI2C.init()
 
 If you are using the ESP8266-based boards, however, you do not need to
 init() the object after creating it:
 
-``myI2C = machine.I2C(machine.Pin(5), machine.Pin(4))``
+::
+   myI2C = machine.I2C(machine.Pin(5), machine.Pin(4))
 
 Once you have created the I2C interface object, you can use it to instantiate
 the RTC object:
 
-``rtc = adafruit_ds1307.DS1307(myI2C)``
+::
+   rtc = adafruit_ds1307.DS1307(myI2C)
 
 To set the time, you need to pass datetime() a datetimetuple object:
 
-``newTime = adafruit_ds1307.datetime_tuple(2016,11,18,6,9,36,0,0)
-  rtc.datetime(newTime)``
+::
+   newTime = adafruit_ds1307.datetime_tuple(2016,11,18,6,9,36,0,0)
+   rtc.datetime(newTime)
 
 After the RTC is set, you retrieve the time by calling the datetime() method
 without any arguments.
 
-``curTime = rtc.datetime()``
+::
+   curTime = rtc.datetime()
 
 Many more details can be found in the Docs/_build directory.
