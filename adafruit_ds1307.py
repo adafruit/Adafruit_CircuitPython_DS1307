@@ -40,7 +40,8 @@ https://github.com/adafruit/micropython/releases
 
 #.  Milliseconds are not supported by this RTC.
 #.  Alarms and timers are not supported by this RTC.
-#.  The data sheet for the DS1307 can be obtained from
+#.  The data sheet for the DS1307 can be obtained from.
+#.  mpy files automatically generated.
 
 https://datasheets.maximintegrated.com/en/ds/DS1307.pdf
 
