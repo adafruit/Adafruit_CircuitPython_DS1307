@@ -69,8 +69,8 @@ Usage Notes
 
 Of course, you must import the library to use it:
 
-::
    import machine
+
    import adafruit_ds1307
 
 All the Adafruit RTC libraries take an instantiated and active I2C object
@@ -80,6 +80,7 @@ ATSAMD21-based board, like the Feather M0, you **must** initialize the object
 after you create it:
 
    myI2C = machine.I2C(machine.Pin('SCL'), machine.Pin('SDA'))
+
    myI2C.init()
 
 If you are using the ESP8266-based boards, however, you do not need to
@@ -95,6 +96,7 @@ the RTC object:
 To set the time, you need to pass datetime() a datetimetuple object:
 
    newTime = adafruit_ds1307.datetime_tuple(2016,11,18,6,9,36,0,0)
+
    rtc.datetime(newTime)
 
 After the RTC is set, you retrieve the time by calling the datetime() method
