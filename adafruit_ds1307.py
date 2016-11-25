@@ -58,29 +58,29 @@ https://datasheets.maximintegrated.com/en/ds/DS1307.pdf
 ##############################################################################
 
 try:
-	import os
+    import os
 except ImportError:
-	import uos as os
+    import uos as os
 
 osName = os.uname()[0]
 bootMicro = False
 if 'samd21' == osName:
-	bootMicro = True
+    bootMicro = True
 if 'esp8266' == osName:
-	bootMicro = True
+    bootMicro = True
 if 'LoPy' == osName:
-	bootMicro = True
+    bootMicro = True
 if 'WiPy' == osName:
-	bootMicro = True
+    bootMicro = True
 if 'pyboard' == osName:
-	bootMicro = True
+    bootMicro = True
 
 if bootMicro:
-	import ucollections
-	import utime
+    import ucollections
+    import utime
 else:
-	import collections as ucollections
-	import time as utime
+    import collections as ucollections
+    import time as utime
 
 
 ##############################################################################
@@ -234,7 +234,7 @@ class DS1307(_BaseRTC):
     """DS1307 RTC subclass.
 
     Supports DS1307-based real time clocks and inherits the _BaseRTC parent
-	class.
+    class.
 
     **Methods:**
 
@@ -247,39 +247,39 @@ class DS1307(_BaseRTC):
     _DATETIME_REGISTER = 0x00
     _SQUARE_WAVE_REGISTER = 0x07
 
-	def datetime(self, datetime=None):
-	    """Read or set the RTC clock.
+    def datetime(self, datetime=None):
+        """Read or set the RTC clock.
 
-	    **Arguments:**
+        **Arguments:**
 
-	    * datetime - a datetime structure to write to the RTC, i.e., sets the
-	      clock.
+        * datetime - a datetime structure to write to the RTC, i.e., sets the
+          clock.
 
-	    """
-	    buffer = bytearray(7)
-	    if datetime is None:
-	        # Read and return the date and time.
-	        self.i2c.readfrom_mem_into(self.address, self._DATETIME_REGISTER,
-	                                       buffer)
-	        return datetime_tuple(
-	            year=_bcd2bin(buffer[6]) + 2000,
-	            month=_bcd2bin(buffer[5]),
-	            day=_bcd2bin(buffer[4]),
-	            weekday=_bcd2bin(buffer[3]),
-	            hour=_bcd2bin(buffer[2]),
-	            minute=_bcd2bin(buffer[1]),
-	            second=_bcd2bin(buffer[0] & 0x3F),
-	        )
-	    # Set the time.
-	    datetime = datetime_tuple(*datetime)    # convert argument to struct
-	    buffer[0] = _bin2bcd(datetime.second)   # format conversions
-	    buffer[1] = _bin2bcd(datetime.minute)
-	    buffer[2] = _bin2bcd(datetime.hour)
-	    buffer[3] = _bin2bcd(datetime.weekday)
-	    buffer[4] = _bin2bcd(datetime.day)
-	    buffer[5] = _bin2bcd(datetime.month)
-	    buffer[6] = _bin2bcd(datetime.year - 2000)
-	    self._register(self._DATETIME_REGISTER, buffer) # Write the register
+        """
+        buffer = bytearray(7)
+        if datetime is None:
+            # Read and return the date and time.
+            self.i2c.readfrom_mem_into(self.address, self._DATETIME_REGISTER,
+                                           buffer)
+            return datetime_tuple(
+                year=_bcd2bin(buffer[6]) + 2000,
+                month=_bcd2bin(buffer[5]),
+                day=_bcd2bin(buffer[4]),
+                weekday=_bcd2bin(buffer[3]),
+                hour=_bcd2bin(buffer[2]),
+                minute=_bcd2bin(buffer[1]),
+                second=_bcd2bin(buffer[0] & 0x3F),
+            )
+        # Set the time.
+        datetime = datetime_tuple(*datetime)    # convert argument to struct
+        buffer[0] = _bin2bcd(datetime.second)   # format conversions
+        buffer[1] = _bin2bcd(datetime.minute)
+        buffer[2] = _bin2bcd(datetime.hour)
+        buffer[3] = _bin2bcd(datetime.weekday)
+        buffer[4] = _bin2bcd(datetime.day)
+        buffer[5] = _bin2bcd(datetime.month)
+        buffer[6] = _bin2bcd(datetime.year - 2000)
+        self._register(self._DATETIME_REGISTER, buffer) # Write the register
 
 
     def stop(self, value=None):
