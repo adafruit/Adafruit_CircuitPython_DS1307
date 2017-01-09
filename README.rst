@@ -2,6 +2,14 @@
 Introduction
 ============
 
+.. image:: https://readthedocs.org/projects/adafruit-circuitpython-ds1307/badge/?version=latest
+    :target: https://circuitpython.readthedocs.io/projects/ds1307/en/latest/
+    :alt: Documentation Status
+
+.. image :: https://badges.gitter.im/adafruit/circuitpython.svg
+    :target: https://gitter.im/adafruit/circuitpython?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge
+    :alt: Gitter
+
 This is a great battery-backed real time clock (RTC) that allows your
 microcontroller project to keep track of time even if it is reprogrammed,
 or if the power is lost. Perfect for datalogging, clock-building,
