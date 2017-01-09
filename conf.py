@@ -18,7 +18,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('.'))
 
 # -- General configuration ------------------------------------------------
 
@@ -31,6 +31,7 @@ sys.path.insert(0, os.path.abspath('..'))
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.intersphinx',
     'sphinx.ext.viewcode',
 ]
 
@@ -48,7 +49,7 @@ source_suffix = '.rst'
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'index'
+master_doc = 'README'
 
 # General information about the project.
 project = u'Adafruit DS1307 Library'
@@ -88,7 +89,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
 #
-# default_role = None
+default_role = "any"
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #
@@ -122,7 +123,18 @@ todo_include_todos = False
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if not on_rtd:  # only import and set the theme if we're building docs locally
+    try:
+        import sphinx_rtd_theme
+        html_theme = 'sphinx_rtd_theme'
+        html_theme_path = [sphinx_rtd_theme.get_html_theme_path(), '.']
+    except:
+        html_theme = 'default'
+        html_theme_path = ['.']
+else:
+    html_theme_path = ['.']
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -339,3 +351,6 @@ texinfo_documents = [
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #
 # texinfo_no_detailmenu = False
+
+intersphinx_mapping = {'python': ('https://docs.python.org/3.4', None),
+                       'CircuitPython': ('https://circuitpython.readthedocs.io/en/latest/', None)}

@@ -18,90 +18,62 @@ please check out our affordable
 
 .. image:: 3296-00.jpg
 
-
-Implementation Details
-=======================
-
-Background
-----------
-
-This page contains the details of the functions, classes, and methods
-available in the DS1307 library.
-
-The DS1307 library consists of three major sections:
-
-#. Functions
-#. The base class _BaseRTC
-#. The subclass DS1307
-
-Functions
----------
-
-The only library function of which you need to be aware of for the
-DS1307 is datetime_tuple(). This is the function that creates an object
-you use to set the clock time. It takes eight arguments and returns a
-datetimetuple object containing the new time settings. The arguments are
-positional rather than keyword arguments. They are, in order:
-
-* Year (4-digit)
-* Month (2-digit)
-* Day of the month (2-digit)
-* Day of the week (1 digit, 0 = Sunday)
-* Hour (24 hour clock, 2-digit)
-* Minute (2-digit)
-* Seconds (2-digits)
-* The digit 0 (representing milliseconds, which are not supported by this RTC)
-
-See the section, below, on usage for examples.
-
-Class Methods
--------------
-
-Here are the important class methods for you to know:
-
-* datetime() - sets or returns the RTC clock time
-* _register() - returns the contents of a register in the RTC chip
-* stop() - suspends RTC operation or, if the argument is None, returns the
-  current setting.
-
 Usage Notes
 ===========
 
 Of course, you must import the library to use it:
 
-   import machine
+.. code:: python
 
-   import adafruit_ds1307
+    import nativeio
+    import adafruit_ds1307
+    import time
 
 All the Adafruit RTC libraries take an instantiated and active I2C object
-(from the machine library) as an argument to their constructor. The way to
-create an I2C object depends on the board you are using. If you are using the
-ATSAMD21-based board, like the Feather M0, you **must** initialize the object
-after you create it:
+(from the `nativeio` library) as an argument to their constructor. The way to
+create an I2C object depends on the board you are using. For boards with labeled
+SCL and SDA pins, you can:
 
-   myI2C = machine.I2C(machine.Pin('SCL'), machine.Pin('SDA'))
+.. code:: python
 
-   myI2C.init()
+    from board import *
 
-If you are using the ESP8266-based boards, however, you do not need to
-init() the object after creating it:
+You can also use pins defined by the onboard `microcontroller` through the
+`microcontroller.pin` module.
 
-   myI2C = machine.I2C(machine.Pin(5), machine.Pin(4))
+Now, to initialize the I2C bus:
+
+.. code:: python
+
+    myI2C = nativeio.I2C(SCL, SDA)
 
 Once you have created the I2C interface object, you can use it to instantiate
 the RTC object:
 
-   rtc = adafruit_ds1307.DS1307(myI2C)
+.. code:: python
 
-To set the time, you need to pass datetime() a datetimetuple object:
+    rtc = adafruit_ds1307.DS1307(myI2C)
 
-   newTime = adafruit_ds1307.datetime_tuple(2016,11,18,6,9,36,0,0)
+To set the time, you need to set ``datetime`` to a `time.struct_time` object:
 
-   rtc.datetime(newTime)
+.. code:: python
 
-After the RTC is set, you retrieve the time by calling the datetime() method
-without any arguments.
+    rtc.datetime = time.struct_time((2017,1,9,15,6,0,0,9,-1))
 
-   curTime = rtc.datetime()
+After the RTC is set, you retrieve the time by reading the ``datetime``
+attribute and access the standard attributes of a struct_time such as `tm_year`,
+`tm_hour` and `tm_min`.
 
-Many more details can be found in the Docs/_build directory.
+.. code:: python
+
+    t = rtc.datetime
+    print(t)
+    print(t.tm_hour, t.tm_min)
+
+API Reference
+=============
+
+.. toctree::
+   :maxdepth: 2
+
+   api
