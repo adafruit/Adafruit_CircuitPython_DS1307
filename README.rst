@@ -26,6 +26,15 @@ please check out our affordable
 
 .. image:: 3296-00.jpg
 
+Dependencies
+=============
+
+This driver depends on the `Register <https://github.com/adafruit/Adafruit_CircuitPython_Register>`_
+and `Bus Device <https://github.com/adafruit/Adafruit_CircuitPython_BusDevice>`_
+libraries. Please ensure they are also available on the CircuitPython filesystem.
+This is easily achieved by downloading
+`a library and driver bundle <https://github.com/adafruit/Adafruit_CircuitPython_Bundle>`_.
+
 Usage Notes
 ===========
 
