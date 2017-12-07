@@ -19,6 +19,9 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+
+# pylint: disable=too-few-public-methods
+
 """
 `adafruit_ds1307` - DS1307 Real Time Clock module
 =================================================
@@ -41,7 +44,8 @@ Implementation Notes
 
 **Software and Dependencies:**
 
-* Adafruit CircuitPython firmware (0.8.0+) for the ESP8622 and M0-based boards: https://github.com/adafruit/circuitpython/releases
+* Adafruit CircuitPython firmware (0.8.0+) for the ESP8622 and M0-based boards:
+    https://github.com/adafruit/circuitpython/releases
 * Adafruit's Register library: https://github.com/adafruit/Adafruit_CircuitPython_Register
 * Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 
@@ -66,8 +70,8 @@ class DS1307:
     datetime_register = i2c_bcd_datetime.BCDDateTimeRegister(0x00)
     """Current date and time."""
 
-    def __init__(self, i2c):
-        self.i2c_device = I2CDevice(i2c, 0x68)
+    def __init__(self, i2c_bus):
+        self.i2c_device = I2CDevice(i2c_bus, 0x68)
 
         # Try and verify this is the RTC we expect by checking the rate select
         # control bits which are 1 on reset and shouldn't ever be changed.
@@ -82,7 +86,8 @@ class DS1307:
 
     @property
     def datetime(self):
-        """Gets the current date and time or sets the current date and time then starts the clock."""
+        """Gets the current date and time or sets the current date and time then starts the
+           clock."""
         return self.datetime_register
 
     @datetime.setter
