@@ -13,7 +13,7 @@ import busio as io
 import adafruit_ds1307
 
 # Change to the appropriate I2C clock & data pins here!
-i2c_bus = io.I2C(board.SCL, board.SDA)  
+i2c_bus = io.I2C(board.SCL, board.SDA)
 
 # Create the RTC instance:
 rtc = adafruit_ds1307.DS1307(i2c_bus)
