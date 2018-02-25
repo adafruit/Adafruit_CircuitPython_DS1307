@@ -51,7 +51,7 @@ Of course, you must import the library to use it:
     import time
 
 All the Adafruit RTC libraries take an instantiated and active I2C object
-(from the `busio` library) as an argument to their constructor. The way to
+(from the ``busio`` library) as an argument to their constructor. The way to
 create an I2C object depends on the board you are using. For boards with labeled
 SCL and SDA pins, you can:
 
@@ -59,8 +59,8 @@ SCL and SDA pins, you can:
 
     from board import *
 
-You can also use pins defined by the onboard `microcontroller` through the
-`microcontroller.pin` module.
+You can also use pins defined by the onboard ``microcontroller`` through the
+``microcontroller.pin`` module.
 
 Now, to initialize the I2C bus:
 
@@ -82,8 +82,8 @@ To set the time, you need to set ``datetime`` to a `time.struct_time` object:
     rtc.datetime = time.struct_time((2017,1,9,15,6,0,0,9,-1))
 
 After the RTC is set, you retrieve the time by reading the ``datetime``
-attribute and access the standard attributes of a struct_time such as `tm_year`,
-`tm_hour` and `tm_min`.
+attribute and access the standard attributes of a struct_time such as ``tm_year``,
+``tm_hour`` and ``tm_min``.
 
 .. code:: python
 
