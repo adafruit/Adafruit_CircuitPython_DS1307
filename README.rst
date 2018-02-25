@@ -24,7 +24,7 @@ If you do not need a DS1307, or you need a 3.3V-power/logic capable RTC
 please check out our affordable
 `PCF8523 RTC breakout <https://www.adafruit.com/products/3295>`_.
 
-.. image:: /3296-00.jpg
+.. image:: ../3296-00.jpg
     :alt: DS1307
 
 Dependencies
