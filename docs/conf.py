@@ -18,7 +18,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('..'))
 
 # -- General configuration ------------------------------------------------
 
@@ -35,6 +35,11 @@ extensions = [
     'sphinx.ext.viewcode',
 ]
 
+# Uncomment the below if you use native CircuitPython modules such as
+# digitalio, micropython and busio. List the modules you use. Without it, the
+# autodoc module docs will fail to generate with a warning.
+autodoc_mock_imports = ["adafruit_register", "adafruit_bus_device"]
+
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
 
@@ -49,7 +54,7 @@ source_suffix = '.rst'
 # source_encoding = 'utf-8-sig'
 
 # The master toctree document.
-master_doc = 'README'
+master_doc = 'index'
 
 # General information about the project.
 project = u'Adafruit DS1307 Library'
@@ -84,7 +89,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This patterns also effect to html_static_path and html_extra_path
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store', '.env', 'CODE_OF_CONDUCT.md']
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
@@ -93,7 +98,7 @@ default_role = "any"
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 #
-# add_function_parentheses = True
+add_function_parentheses = True
 
 # If true, the current module name will be prepended to all description
 # unit titles (such as .. function::).
@@ -116,6 +121,9 @@ pygments_style = 'sphinx'
 
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
+
+# If this is True, todo emits a warning for each TODO entries. The default is False.
+todo_emit_warnings = True
 
 
 # -- Options for HTML output ----------------------------------------------
@@ -169,6 +177,12 @@ else:
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# The name of an image file (relative to this directory) to use as a favicon of
+# the docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
+# pixels large.
+#
+html_favicon = '_static/favicon.ico'
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied
