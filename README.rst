@@ -10,6 +10,10 @@ Introduction
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
+.. image:: https://travis-ci.org/adafruit/Adafruit_CircuitPython_DS1307.svg?branch=master
+    :target: https://travis-ci.org/adafruit/Adafruit_CircuitPython_DS1307
+    :alt: Build Status
+
 This is a great battery-backed real time clock (RTC) that allows your
 microcontroller project to keep track of time even if it is reprogrammed,
 or if the power is lost. Perfect for datalogging, clock-building,
