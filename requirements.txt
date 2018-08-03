@@ -1,2 +1,2 @@
-adafruit-micropython-register
-adafruit-micropython-busdevice
+adafruit-circuitpython-register
+adafruit-circuitpython-busdevice
