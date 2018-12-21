@@ -10,8 +10,8 @@ Introduction
     :target: https://discord.gg/nBQh6qu
     :alt: Discord
 
-.. image:: https://travis-ci.org/adafruit/Adafruit_CircuitPython_DS1307.svg?branch=master
-    :target: https://travis-ci.org/adafruit/Adafruit_CircuitPython_DS1307
+.. image:: https://travis-ci.com/adafruit/Adafruit_CircuitPython_DS1307.svg?branch=master
+    :target: https://travis-ci.com/adafruit/Adafruit_CircuitPython_DS1307
     :alt: Build Status
 
 This is a great battery-backed real time clock (RTC) that allows your
