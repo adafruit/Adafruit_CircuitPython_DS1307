@@ -78,8 +78,7 @@ class DS1307:
         buf = bytearray(2)
         buf[0] = 0x07
         with self.i2c_device as i2c:
-            i2c.write(buf, end=1, stop=False)
-            i2c.readinto(buf, start=1)
+            i2c.write_then_readinto(buf, buf, out_end=1, in_start=1)
 
         if (buf[1] & 0b00000011) != 0b00000011:
             raise ValueError("Unable to find DS1307 at i2c address 0x68.")
