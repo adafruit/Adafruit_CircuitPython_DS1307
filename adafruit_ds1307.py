@@ -61,6 +61,10 @@ from adafruit_bus_device.i2c_device import I2CDevice
 from adafruit_register import i2c_bit
 from adafruit_register import i2c_bcd_datetime
 
+__version__ = "0.0.0-auto.0"
+__repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_DS1307.git"
+
+
 class DS1307:
     """Interface to the DS1307 RTC."""
 
