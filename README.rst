@@ -72,36 +72,33 @@ Usage Notes
 
 Of course, you must import the library to use it:
 
-.. code:: python
+.. code:: python3
 
-    import busio
+    import board
     import adafruit_ds1307
     import time
 
 All the Adafruit RTC libraries take an instantiated and active I2C object
-(from the ``busio`` library) as an argument to their constructor. The way to
+(from the ``board`` library) as an argument to their constructor. The way to
 create an I2C object depends on the board you are using. For boards with labeled
 SCL and SDA pins, you can:
 
 .. code:: python
 
-    from board import *
-
-You can also use pins defined by the onboard ``microcontroller`` through the
-``microcontroller.pin`` module.
+    import board
 
 Now, to initialize the I2C bus:
 
 .. code:: python
 
-    myI2C = busio.I2C(SCL, SDA)
+    i2c = board.I2C()
 
 Once you have created the I2C interface object, you can use it to instantiate
 the RTC object:
 
 .. code:: python
 
-    rtc = adafruit_ds1307.DS1307(myI2C)
+    rtc = adafruit_ds1307.DS1307(i2c)
 
 To set the time, you need to set ``datetime`` to a `time.struct_time` object:
 

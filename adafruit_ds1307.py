@@ -27,9 +27,11 @@ Implementation Notes
 
 **Software and Dependencies:**
 
-* Adafruit CircuitPython firmware (0.8.0+) for the ESP8622 and M0-based boards:
-    https://github.com/adafruit/circuitpython/releases
+* Adafruit CircuitPython firmware for the supported boards:
+  https://circuitpython.org/downloads
+
 * Adafruit's Register library: https://github.com/adafruit/Adafruit_CircuitPython_Register
+
 * Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 
 **Notes:**
@@ -49,7 +51,42 @@ __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_DS1307.git"
 
 
 class DS1307:
-    """Interface to the DS1307 RTC."""
+    """Interface to the DS1307 RTC.
+
+    :param ~busio.I2C i2c_bus: The I2C bus the device is connected to
+
+    **Quickstart: Importing and using the device**
+
+        Here is an example of using the :class:`DS1307` class.
+        First you will need to import the libraries to use the sensor
+
+        .. code-block:: python
+
+            import time
+            import board
+            import adafruit_ds1307
+
+        Once this is done you can define your `board.I2C` object and define your sensor object
+
+        .. code-block:: python
+
+            i2c = board.I2C()  # uses board.SCL and board.SDA
+            rtc = adafruit_ds1307.DS1307(i2c)
+
+        Now you can give the current time to the device.
+
+        .. code-block:: python
+
+            t = time.struct_time((2017, 10, 29, 15, 14, 15, 0, -1, -1))
+            rtc.datetime = t
+
+        You can access the current time accessing the :attr:`datetime` attribute.
+
+        .. code-block:: python
+
+            current_time = rtc.datetime
+
+    """
 
     disable_oscillator = i2c_bit.RWBit(0x0, 7)
     """True if the oscillator is disabled."""
