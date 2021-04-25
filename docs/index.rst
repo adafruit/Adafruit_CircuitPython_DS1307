@@ -23,6 +23,8 @@ Table of Contents
 .. toctree::
     :caption: Tutorials
 
+    Adafruit DS1307 Real Time Clock Assembled Breakout Board Learning Guide <https://learn.adafruit.com/ds1307-real-time-clock-breakout-board-kit>
+
 .. toctree::
     :caption: Related Products
 
