@@ -116,6 +116,11 @@ attribute and access the standard attributes of a struct_time such as ``tm_year`
     print(t)
     print(t.tm_hour, t.tm_min)
 
+Documentation
+=============
+
+API documentation for this library can be found on `Read the Docs <https://circuitpython.readthedocs.io/projects/ds1307/en/latest/>`_.
+
 Contributing
 ============
 
