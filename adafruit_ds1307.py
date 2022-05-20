@@ -97,7 +97,8 @@ class DS1307:
     def __init__(self, i2c_bus):
         self.i2c_device = I2CDevice(i2c_bus, 0x68)
 
-        # Try and verify this is the RTC we expect by checking the rate select fields described as "0 = Always reads back as 0."
+        # Try and verify this is the RTC we expect by checking constant fields.
+        # These fields are described as "0 = Always reads back as 0." in spec.
         buf = bytearray(2)
         buf[0] = 0x07
         with self.i2c_device as i2c:
