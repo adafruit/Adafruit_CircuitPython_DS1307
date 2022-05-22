@@ -97,14 +97,21 @@ class DS1307:
     def __init__(self, i2c_bus):
         self.i2c_device = I2CDevice(i2c_bus, 0x68)
 
-        # Try and verify this is the RTC we expect by checking the rate select
-        # control bits which are 1 on reset and shouldn't ever be changed.
+        # Try and verify this is the RTC we expect by checking constant fields.
+        # These fields are described as "0 = Always reads back as 0." in spec.
         buf = bytearray(2)
         buf[0] = 0x07
         with self.i2c_device as i2c:
             i2c.write_then_readinto(buf, buf, out_end=1, in_start=1)
 
-        if (buf[1] & 0b00000011) != 0b00000011:
+        if (buf[1] & 0b01101100) != 0b00000000:
+            raise ValueError("Unable to find DS1307 at i2c address 0x68.")
+
+        buf[0] = 0x03
+        with self.i2c_device as i2c:
+            i2c.write_then_readinto(buf, buf, out_end=1, in_start=1)
+
+        if (buf[1] & 0b11111000) != 0b00000000:
             raise ValueError("Unable to find DS1307 at i2c address 0x68.")
 
     @property
