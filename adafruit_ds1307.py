@@ -46,6 +46,13 @@ from adafruit_bus_device.i2c_device import I2CDevice
 from adafruit_register import i2c_bit
 from adafruit_register import i2c_bcd_datetime
 
+try:
+    import typing  # pylint: disable=unused-import
+    from busio import I2C
+    from time import struct_time
+except ImportError:
+    pass
+
 __version__ = "0.0.0-auto.0"
 __repo__ = "https://github.com/adafruit/Adafruit_CircuitPython_DS1307.git"
 
@@ -94,7 +101,7 @@ class DS1307:
     datetime_register = i2c_bcd_datetime.BCDDateTimeRegister(0x00)
     """Current date and time."""
 
-    def __init__(self, i2c_bus):
+    def __init__(self, i2c_bus: I2C) -> None:
         self.i2c_device = I2CDevice(i2c_bus, 0x68)
 
         # Try and verify this is the RTC we expect by checking constant fields.
@@ -115,12 +122,12 @@ class DS1307:
             raise ValueError("Unable to find DS1307 at i2c address 0x68.")
 
     @property
-    def datetime(self):
+    def datetime(self) -> struct_time:
         """Gets the current date and time or sets the current date and time then starts the
         clock."""
         return self.datetime_register
 
     @datetime.setter
-    def datetime(self, value):
+    def datetime(self, value: struct_time) -> None:
         self.disable_oscillator = False
         self.datetime_register = value
