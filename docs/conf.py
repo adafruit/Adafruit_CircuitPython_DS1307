@@ -64,7 +64,7 @@ master_doc = "index"
 # General information about the project.
 project = "Adafruit DS1307 Library"
 current_year = str(datetime.datetime.now().year)
-copyright = "2016, Philip Moyer and Adafruit Industries"
+copyright = current_year + " Philip Moyer and Adafruit Industries"
 author = "Philip Moyer"
 
 # The version info for the project you're documenting, acts as replacement for
