@@ -3,8 +3,6 @@
 #
 # SPDX-License-Identifier: MIT
 
-# pylint: disable=too-few-public-methods
-
 """
 `adafruit_ds1307` - DS1307 Real Time Clock module
 =================================================
@@ -43,13 +41,13 @@ Implementation Notes
 """
 
 from adafruit_bus_device.i2c_device import I2CDevice
-from adafruit_register import i2c_bit
-from adafruit_register import i2c_bcd_datetime
+from adafruit_register import i2c_bcd_datetime, i2c_bit
 
 try:
-    import typing  # pylint: disable=unused-import
-    from busio import I2C
+    import typing
     from time import struct_time
+
+    from busio import I2C
 except ImportError:
     pass
 
